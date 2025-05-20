@@ -2,136 +2,32 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Radar GPS</title>
-  <style>
-    body { font-family: Arial; padding: 20px; }
-    input { width: 100px; margin: 5px; }
-    button { margin: 2px; }
-    #distancia { font-weight: bold; margin-top: 10px; }
-  </style>
+  <title>Sonar Caching</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <h2>Coordenadas Objetivo</h2>
-  Latitud: <input type="number" id="latObjetivo" step="0.00001" value="37.87805355641656"><br>
-  Longitud: <input type="number" id="lonObjetivo" step="0.00001" value="-4.779670311849597"><br>
-
-  <h2>Coordenadas Actuales</h2>
-  Latitud: <input type="number" id="latActual" step="0.00001" value="37.8740251110954"><br>
-  Longitud: <input type="number" id="lonActual" step="0.00001" value="-4.771887456419989"><br>
-
-  <div>
-    <h3>Movimiento</h3>
-    <button onclick="mover('N')">↑ Norte</button><br>
-    <button onclick="mover('O')">← Oeste</button>
-    <button onclick="mover('E')">→ Este</button><br>
-    <button onclick="mover('S')">↓ Sur</button>
+  <!-- Pantalla de selección de ruta -->
+  <div id="pantallaSeleccion" class="pantalla">
+    <h2>Selecciona una ruta</h2>
+    <ul id="listaRutas"></ul>
   </div>
 
-  <div id="distancia">Distancia: -- metros</div>
+  <!-- Pantalla de punto actual -->
+  <div id="pantallaPunto" class="pantalla oculto">
+    <img id="imagenPunto">
+    <h2 id="tituloPunto"></h2>
+    <p id="descripcionPunto"></p>
+    <button id="iniciarNavegacion">Ir al punto</button>
+  </div>
 
-  <script>
-    const paso = 0.0001;
-    let distanciaActual = null;
-    let ultimaEmision = 0;
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    
-    
-    function mover(direccion) {
-      let lat = parseFloat(document.getElementById('latActual').value) || 0;
-      let lon = parseFloat(document.getElementById('lonActual').value) || 0;
+  <!-- Pantalla de navegación -->
+  <div id="pantallaNavegacion" class="pantalla oculto">
+    <h2>Navegación</h2>
+    <p>Distancia al objetivo: <span id="distancia"></span> m</p>
+    <button id="puntoAlcanzado">He llegado</button>
+  </div>
 
-      if (direccion === 'N') lat += paso;
-      if (direccion === 'S') lat -= paso;
-      if (direccion === 'E') lon += paso;
-      if (direccion === 'O') lon -= paso;
-
-      document.getElementById('latActual').value = lat.toFixed(5);
-      document.getElementById('lonActual').value = lon.toFixed(5);
-      calcularDistancia();
-    }
-
-    function calcularDistancia() {
-      const lat1 = parseFloat(document.getElementById('latActual').value);
-      const lon1 = parseFloat(document.getElementById('lonActual').value);
-      const lat2 = parseFloat(document.getElementById('latObjetivo').value);
-      const lon2 = parseFloat(document.getElementById('lonObjetivo').value);
-
-      if (isNaN(lat1) || isNaN(lon1) || isNaN(lat2) || isNaN(lon2)) {
-        document.getElementById('distancia').innerText = 'Distancia: -- metros';
-        return;
-      }
-
-      const R = 6371000;
-      const dLat = (lat2 - lat1) * Math.PI / 180;
-      const dLon = (lon2 - lon1) * Math.PI / 180;
-      const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      const d = R * c;
-
-      distanciaActual = d;
-      document.getElementById('distancia').innerText = 'Distancia: ' + d.toFixed(2) + ' metros';
-
-    }
-
-    function ajustarSonar() {
-      if (sonarInterval) clearInterval(sonarInterval);
-      if (distanciaActual === null) return;
-
-      // Definir intervalo: más cerca = más rápido
-      let intervalo = distanciaActual;
-      sonarInterval = setInterval(emitirSonido, intervalo);
-    }
-
-    function obtenerIntervalo() {
-      return distanciaActual;
-    }    
-
-    function emitirSonido() {
-      const o = audioContext.createOscillator();
-      const g = audioContext.createGain();
-      o.type = "sine";
-      o.frequency.value = 1000;
-      g.gain.setValueAtTime(0.2, audioContext.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.1);
-      o.connect(g);
-      g.connect(audioContext.destination);
-      o.start();
-      o.stop(audioContext.currentTime + 0.1);
-    }
-
-
-
-
-    // Recalcular cuando cambien los campos
-    document.querySelectorAll('input').forEach(input => {
-      input.addEventListener('input', calcularDistancia);
-    });
-
-    // Bucle principal que emite sonido según distancia
-    setInterval(() => {
-      calcularDistancia();
-      const ahora = Date.now();
-      const intervalo = obtenerIntervalo();
-
-      if (ahora - ultimaEmision > intervalo) {
-        emitirSonido();
-        ultimaEmision = ahora;
-      }
-    }, 100); // Comprobamos cada 100ms
-
-    document.querySelectorAll('input').forEach(input => {
-      input.addEventListener('input', calcularDistancia);
-    });
-
-    // Iniciar una primera comprobación si hay valores por defecto
-    calcularDistancia();
-
-
-  </script>
-
+  <script type="module" src="app.js"></script>
 </body>
 </html>
