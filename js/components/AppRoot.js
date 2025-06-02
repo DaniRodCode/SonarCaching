@@ -1,7 +1,7 @@
 import { GestorPantallas, Pantalla} from '../services/GestorPantallas.js';
 import { PantallaSeleccionarRuta } from './PantallaSeleccionarRuta.js';
 import { PantallaBuscarPunto } from './PantallaBuscarPunto.js';
-import { PantallaPuntoEncontrado } from './pantallaPuntoEncontrado.js';
+import { PantallaPuntoEncontrado } from './PantallaPuntoEncontrado.js';
 
 customElements.define('pantalla-seleccionar-ruta', PantallaSeleccionarRuta);
 customElements.define('pantalla-buscar-punto', PantallaBuscarPunto);
