@@ -1,33 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
+
 <head>
   <meta charset="UTF-8">
-  <title>Sonar Caching</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Sonar Caching v0.1</title>
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
+
+
 <body>
-
-  <!-- Pantalla de selección de ruta -->
-  <div id="pantallaSeleccion" class="pantalla">
-    <h2>Selecciona una ruta</h2>
-    <ul id="listaRutas"></ul>
-  </div>
-
-  <!-- Pantalla de punto actual -->
-  <div id="pantallaPunto" class="pantalla oculto">
-    <img id="imagenPunto">
-    <h2 id="tituloPunto"></h2>
-    <p id="descripcionPunto"></p>
-    <button id="iniciarNavegacion">Ir al punto</button>
-  </div>
-
-  <!-- Pantalla de navegación -->
-  <div id="pantallaNavegacion" class="pantalla oculto">
-    <h2>Navegación</h2>
-    <p>Distancia al objetivo: <span id="distancia"></span> m</p>
-    <button id="puntoAlcanzado">He llegado</button>
-  </div>
-
-  <script type="module" src="app.js"></script>
+  <app-root></app-root>
+  <script type="module" src="./js/main.js"></script>
 </body>
+
 </html>
