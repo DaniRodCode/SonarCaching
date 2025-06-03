@@ -38,11 +38,11 @@ export class PantallaSeleccionarRuta extends Pantalla {
         imagen: null,
         puntos: [
           { lat: null, lon: null, imagen:null, titulo:"Ruta 1 punto 0", mensaje: "Inicio de la ruta 1" },
-          { lat: 37.8765, lon: -4.7801, imagen:null, titulo:"Ruta 1 Punto 1", mensaje: "Has llegado al punto 1." },
-          { lat: 37.8772, lon: -4.7810, imagen:null, titulo:"Ruta 1 Punto 2", mensaje: "Has llegado al punto 2." },
+          { lat: 37.87741566635104, lon: -4.766528674714567, imagen:null, titulo:"Eroski", mensaje: "Has llegado al Eroski" },
+          { lat: 37.873922178320555, lon: -4.771847831283576, imagen:null, titulo:"Casa", mensaje: "Has llegado a casa" },
           { lat: null, lon: null, imagen:null, titulo:"Fin ruta 1", mensaje: "Fin de la ruta 1" },
         ]
-      },
+      }, 
       {
         titulo: "Ruta 2",
         imagen: null,
