@@ -46,11 +46,11 @@ export class Pantalla extends HTMLElement {
         #contenedor {
           width: 100%;
           height: 100%;
-
-          display: grid;
-          place-items: center; /* centra vertical y horizontal */
-          
-          box-sizing: border-box;
+          display: flex;          
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          row-gap: 10rem;
         }           
         
       </style>      

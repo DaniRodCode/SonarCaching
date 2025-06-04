@@ -17,22 +17,26 @@ export class PantallaBuscarPunto extends Pantalla {
     this.contenido(`
         <style>
 
-          #distancia {
-            font-size:8em;
-            font-family: system-ui;
-          }
+        :host {
+          background: radial-gradient(circle at center, #444 0%, #040235 100%) !important;
+          animation: oscurecer 5s ease-in-out infinite;
+        }
 
-          #alertaVisual {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width:100%;
-            height: 100%;
+        @keyframes oscurecer {
+          0%, 100%  { filter: brightness(1);    }
+          50%       { filter: brightness(1.5);  }
+        }     
+
+          #distancia {
+            font-size:7em;
+            font-family: system-ui;
+            font-weight: 200;
+            color: white;
           }
           
           #circulo {
-            width: 50vw;
-            height: 50vw;
+            width: min(50vw,50vh);
+            height: min(50vw,50vh);
             background-color: red;
             border-radius: 50%;
             transition: transform 0.2s ease-out;
@@ -46,14 +50,22 @@ export class PantallaBuscarPunto extends Pantalla {
         </style>
 
 
-        <div id="titulo" class="titulo"></div>
-        <div id="alertaVisual">
-          <div id="circulo"></div>
+        <div id="titulo" class="pantalla-titular arriba fullscreen"></div>
+        <div id="alertaVisual" class="centrado fullscreen">
+          <div id="circulo" class="centrado fullscreen sombra"></div>
+          <div id="distancia" class="centrado fullscreen"></div>
         </div>        
-        <div id="distancia"></div>
+        <div class="pantalla-pie">
+          <div id="botonSiguiente">Siguiente</div>
+          <div>Ayuda</div>
+        </div>
     `);
 
       this.circulo = this.shadowRoot.querySelector('#circulo');
+
+      this.shadowRoot.querySelector("#botonSiguiente").addEventListener("click", 
+        () => { this.puntoEncontrado(); }
+      );
 
   }
   

@@ -9,40 +9,127 @@ customElements.define('pantalla-punto-encontrado', PantallaPuntoEncontrado);
 
 Pantalla.contenidoGlobal = `
 <style>
-  .titulo {
-    font-size: 10em;
-    font-family: sans-serif;
+
+  :host {
+    --color-fondo: #FFFBDE;
+    --color-texto: #ffffff;
+    --color-primario: #90D1CA;
+    --color-secundario: #129990;
+    --color-gris: #b0b0b0;
+    --font-base: system-ui;
+
+    font-family: var(--font-base);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    overflow-y: auto;
+  }
+
+  .color-blanco { color: white; }
+  .color-fondo { color: var(--color-fondo); } 
+  .color-texto { color: var(--color-texto); } 
+  .color-primario { color: var(--color-primario); } 
+  .color-secundario { color: var(--color-secundario); } 
+
+  .sombra { text-shadow: 0 0px 12px rgba(0, 0, 0, 0.5);  }
+  
+  .pantalla-titulo {
+    font-size: 10rem;
+    font-weight: 600;
     text-align: center;
-    font-weight: bold;
     line-height: .8em;
   }
-
-  .logo {
-    width: 10vw;
-    height: 10vw;
-    background: red;
-    position: absolute;
-    top:0;
-    right:0;            
+  
+  .pantalla-titular {
+    font-size: 5rem;
+    font-weight: 500;
+    text-align: center;
+    line-height: 5rem;
+    margin: 2rem;
   }
 
-  .pie {
+  .pantalla-descripcion {
+    font-size: 4rem;
+    line-height: 5rem;
+    text-align: center;
+    margin: 2rem;
+  }
+  
+
+  .pantalla-logo {
+    background: url('./assets/DaniRod-logo.svg');
+    width: 10vw;
+    height: 10vw;
+    max-width: 75px;
+    max-height: 75px;
+
+    position: absolute;
+    top:0;
+    right:0;    
+    margin:20px;
+    mix-blend-mode: multiply;        
+    opacity: 0.2;
+  }
+
+  
+
+  .pantalla-pie {
+    display:flex;
+    justify-content: flex-end;
+    column-gap: 2rem;
     width: 100%;
     position: absolute;
     bottom:0;
     padding-right: .5em;
     padding-top: .5em;
     padding-bottom: .5em;
-    font-size: 2em;
-    background: black;
+    font-size: 2rem;
+    background: #00000022;
     color:white;
     text-align: right;
-    opacity: .2;            
   }
 
-  button {  
-    font-size: 3em;   
+
+  button {    
+    background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+    border: none;
+    border-radius: 8px;
+    padding: 1rem;
+    color: white;
+    font-size: 3rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }  
+
+  .centrado {
+    display: flex;
+    justify-content: center;
+    align-items: center;            
+  }
+
+  .arriba {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;    
+  }
+
+  .fullscreen { 
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .fondo {
+    z-index:-1;
+  }
 
 </style>
 `;  
