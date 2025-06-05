@@ -4,6 +4,8 @@ import { GestorPantallas, Pantalla } from '../services/GestorPantallas.js';
 export class PantallaBuscarPunto extends Pantalla {
 
   connectedCallback() {    
+    this.INVERVALO_SONAR_MAXIMO = 2000;
+
     this.posicionObjetivo = null;
     this.posicionActual = null;
     this.distancia = null;
@@ -42,26 +44,43 @@ export class PantallaBuscarPunto extends Pantalla {
             transition: transform 0.2s ease-out;
           }
 
+          #onda {
+            width: min(50vw,50vh);
+            height: min(50vw,50vh);
+            border: 1px solid #fff;
+            border-radius: 50%;
+            transition: transform 0.2s ease-out;
+            opacity: 0;
+          }
+
           @keyframes pulso {
             0%   { transform: scale(1); }
             50%  { transform: scale(1.5); }
             100% { transform: scale(1); }
           }
+
+
+          @keyframes pulso-onda {
+            0%   { transform: scale(1);  opacity: 1; }
+            100% { transform: scale(2);  opacity: 0; }
+          }          
         </style>
 
-
-        <div id="titulo" class="pantalla-titular arriba fullscreen"></div>
-        <div id="alertaVisual" class="centrado fullscreen">
-          <div id="circulo" class="centrado fullscreen sombra"></div>
-          <div id="distancia" class="centrado fullscreen"></div>
-        </div>        
-        <div class="pantalla-pie">
+        
+        <div class="pantalla-menu">
           <div id="botonSiguiente">Siguiente</div>
           <div>Ayuda</div>
         </div>
+        <div id="titulo" class="pantalla-titular fullscreen"></div>
+        <div id="alertaVisual" class="centrado fullscreen">
+        <div id="onda" class="centrado fullscreen"></div>
+          <div id="circulo" class="centrado sombra fullscreen"></div>
+          <div id="distancia" class="centrado fullscreen"></div>
+        </div>        
     `);
 
       this.circulo = this.shadowRoot.querySelector('#circulo');
+      this.onda = this.shadowRoot.querySelector('#onda');
 
       this.shadowRoot.querySelector("#botonSiguiente").addEventListener("click", 
         () => { this.puntoEncontrado(); }
@@ -153,7 +172,7 @@ export class PantallaBuscarPunto extends Pantalla {
   iniciarSonar() {
     this.sonarInterval = setInterval(() => {
       const ahora = Date.now();
-      const intervalo = this.distancia ? Math.min(this.distancia*10,1000) : 9999999;
+      const intervalo = this.distancia ? Math.min(this.distancia*10,this.INVERVALO_SONAR_MAXIMO) : 9999999;
 
       if (ahora - this.ultimaEmision > intervalo) {
         this.emitirSonido();
@@ -183,6 +202,11 @@ export class PantallaBuscarPunto extends Pantalla {
     this.circulo.style.animation = 'none';
     void this.circulo.offsetWidth; 
     this.circulo.style.animation = 'pulso 0.1s ease-out';
+
+    this.onda.style.animation = 'none';
+    void this.onda.offsetWidth; 
+    this.onda.style.animation = 'pulso-onda 2s ease-out';
+
 
     console.log(this.posicionActual,this.posicionObjetivo);
   }  

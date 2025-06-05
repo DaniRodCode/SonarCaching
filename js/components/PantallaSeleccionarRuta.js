@@ -21,10 +21,10 @@ export class PantallaSeleccionarRuta extends Pantalla {
 
         </style>
 
+        <div class="pantalla-menu">Ayuda</div>
         <div class="pantalla-logo"></div>
         <div class="pantalla-titulo color-primario sombra">Sonar Caching</div>
         <div id="listaRutas"></div>
-        <div class="pantalla-pie">Ayuda</div>
     `);
 
     this.rutas = this.cargarRutas();
@@ -69,13 +69,21 @@ export class PantallaSeleccionarRuta extends Pantalla {
         ]
       },      
       {
-        titulo: "Ruta 2",
-        imagen: null,
+        titulo: "Ruta centros deportivos",
+        imagen: 'https://www.openglobalrights.org/userfiles/image/murphy2019.jpg',
         puntos: [
-          { lat: null, lon: null, imagen:null, titulo:"Ruta 2 punto 0", mensaje: "Inicio de la ruta 2" },
-          { lat: 37.8765, lon: -4.7801, imagen:null, titulo:"Ruta 2 Punto 1", mensaje: "Has llegado al punto 1." },
-          { lat: 37.8772, lon: -4.7810, imagen:null, titulo:"Ruta 2 Punto 2", mensaje: "Has llegado al punto 2." },
-          { lat: null, lon: null, imagen:null, titulo:"Fin ruta 2", mensaje: "Fin de la ruta 2" },
+          { lat: null, lon: null, imagen:null, 
+            titulo:"Centros deportivos de Córdoba", 
+            mensaje: "Esta ruta te lleva por los centros deportivos de Córdoba" },
+          { lat: 37.897965576000544, lon: -4.7286683974934025, imagen:'https://scontent-cdg4-1.xx.fbcdn.net/v/t39.30808-1/327056421_1346931856070061_8247673771694097197_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=8YXplGbCSFAQ7kNvwHUvOSR&_nc_oc=AdlajEPKYFS94MV4X48Rrlz6bjT5G0YzmkB1d4qhUx3ddSg-ScGG2XHubj_QC4cUKT8&_nc_zt=24&_nc_ht=scontent-cdg4-1.xx&_nc_gid=aOrHxBCbWPmHioQQSnUkeA&oh=00_AfN6eeXrrV7vAe5nAQI1cgi9TMmkf-2Q0O_c3unpjYAy4w&oe=6847880C', 
+            titulo:"Padel Las Quemadas", 
+            mensaje: "Has llegado a las pistas" },
+          { lat: 37.894820294117125, lon: 4.777757685828204, imagen:'https://lh5.googleusercontent.com/p/AF1QipMCmUeyYQFWCpWbyyzMQ-jh4Hg-B0v_Gs7qxHW9=w408-h335-k-no', 
+          titulo:"Polideportivo Valdeolleros", 
+            mensaje: "Has llegado al polideportivo" },
+          { lat: null, lon: null, 
+            imagen:null, titulo:"Fin de la ruta", 
+            mensaje: "Estupendo has completado toda la ruta" },
         ]
       },
       {

@@ -47,7 +47,7 @@ Pantalla.contenidoGlobal = `
     font-weight: 500;
     text-align: center;
     line-height: 5rem;
-    margin: 2rem;
+    top: 10rem;
   }
 
   .pantalla-descripcion {
@@ -66,7 +66,7 @@ Pantalla.contenidoGlobal = `
     max-height: 75px;
 
     position: absolute;
-    top:0;
+    bottom:50px;
     right:0;    
     margin:20px;
     mix-blend-mode: multiply;        
@@ -75,20 +75,22 @@ Pantalla.contenidoGlobal = `
 
   
 
-  .pantalla-pie {
+  .pantalla-menu {
     display:flex;
     justify-content: flex-end;
     column-gap: 2rem;
     width: 100%;
     position: absolute;
-    bottom:0;
+    top:0;
     padding-right: .5em;
     padding-top: .5em;
     padding-bottom: .5em;
     font-size: 2rem;
-    background: #00000022;
+    background: #aaaaaa33;
     color:white;
     text-align: right;
+    z-index: 999999;
+    mix-blend-mode: difference;        
   }
 
 
