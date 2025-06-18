@@ -11,11 +11,12 @@ Pantalla.contenidoGlobal = `
 <style>
 
   :host {
-    --color-fondo: #FFFBDE;
+    --color-fondo: #9FB3DF;
     --color-texto: #ffffff;
     --color-primario: #90D1CA;
     --color-secundario: #129990;
     --color-gris: #b0b0b0;
+    --color-negro: #000;
     --font-base: system-ui;
 
     font-family: var(--font-base);
@@ -36,10 +37,12 @@ Pantalla.contenidoGlobal = `
   .sombra { text-shadow: 0 0px 12px rgba(0, 0, 0, 0.5);  }
   
   .pantalla-titulo {
-    font-size: 10rem;
+    font-size: 14rem;
     font-weight: 600;
-    text-align: center;
-    line-height: .8em;
+    text-align: left;
+    line-height: .9em;
+    width: 100%;
+    letter-spacing: -15px;
   }
   
   .pantalla-titular {
@@ -55,6 +58,8 @@ Pantalla.contenidoGlobal = `
     line-height: 5rem;
     text-align: center;
     margin: 2rem;
+    font-family: system-ui;
+    font-weight: 100;
   }
   
 
@@ -86,29 +91,28 @@ Pantalla.contenidoGlobal = `
     padding-top: .5em;
     padding-bottom: .5em;
     font-size: 2rem;
-    background: #aaaaaa33;
+    background: #123458;
     color:white;
     text-align: right;
     z-index: 999999;
-    mix-blend-mode: difference;        
   }
 
 
   button {    
-    background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+    background: linear-gradient(145deg, #0000, #fff3);
     border: none;
-    border-radius: 8px;
     padding: 1rem;
     color: white;
     font-size: 3rem;
-    font-weight: 500;
+    font-weight: 100;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: system-ui; 
   }
   
   button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.01);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }  
 
   .centrado {

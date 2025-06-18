@@ -20,7 +20,7 @@ export class PantallaBuscarPunto extends Pantalla {
         <style>
 
         :host {
-          background: radial-gradient(circle at center, #444 0%, #040235 100%) !important;
+          background: radial-gradient(circle at center, #6affef 0%, #123458 100%) !important;
           animation: oscurecer 5s ease-in-out infinite;
         }
 
@@ -33,13 +33,13 @@ export class PantallaBuscarPunto extends Pantalla {
             font-size:7em;
             font-family: system-ui;
             font-weight: 200;
-            color: white;
+            color: #333;
           }
           
           #circulo {
             width: min(50vw,50vh);
             height: min(50vw,50vh);
-            background-color: red;
+            background-color: #fff;
             border-radius: 50%;
             transition: transform 0.2s ease-out;
           }
